@@ -52,6 +52,7 @@ module Capitomcat
       set :use_tomcat_user_cmd, @task.use_tomcat_user_cmd.to_bool
 
       set :tomcat_war_file, @utils.get_tomcat_war_file
+      set :tomcat_war_dir, @utils.get_tomcat_war_dir
       set :tomcat_context_path, @utils.get_tomcat_context_path
       set :tomcat_context_file, @utils.get_tomcat_context_file
       set :tomcat_work_dir, @utils.get_tomcat_work_dir
@@ -83,6 +84,7 @@ module Capitomcat
         @listener.debug("tomcat_work_dir       => #{fetch(:tomcat_work_dir)}")
         @listener.debug("context_template_file => #{fetch(:context_template_file)}")
         @listener.debug("tomcat_war_file       => #{fetch(:tomcat_war_file)}")
+        @listener.debug("tomcat_war_dir        => #{fetch(:tomcat_war_dir)}")
         @listener.debug("use_parallel          => #{fetch(:use_parallel)}")
       end
     end

@@ -27,6 +27,10 @@ module Capitomcat
         return File.join(@task.tomcat_home, @task.tomcat_app_base, get_tomcat_context_name() + '.war').to_s
       end
     end
+    
+    def get_tomcat_war_dir
+      return File.join(@task.tomcat_home, @task.tomcat_app_base, get_tomcat_context_name()).to_s
+    end
 
     def get_tomcat_context_file
       return "#{get_base_dir('conf')}.xml"

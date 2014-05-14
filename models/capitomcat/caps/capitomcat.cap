@@ -47,6 +47,9 @@ namespace :capitomcat_jenkins do
 
         listener.info "[#{host}] Cleaning-up Tomcat Work directory : #{fetch(:tomcat_work_dir)}"
         cleanup_work_dir
+        
+        listener.info "[#{host}] Cleaning-up WAR directory : #{fetch(:tomcat_war_dir)}"
+        cleanup_war_dir
 
         listener.info "[#{host}] Starting Tomcat    : #{fetch(:tomcat_cmd)} start"
         start_tomcat
@@ -56,4 +59,18 @@ namespace :capitomcat_jenkins do
     end
     listener.info '---------------------------------------------------------------------------'
   end
+  
+  # Clean-up war directory
+  def cleanup_war_dir
+    # local variables
+    tomcat_war_dir = fetch(:tomcat_war_dir)
+    tomcat_user = fetch(:tomcat_user)
+
+    if dir_exist?(tomcat_war_dir)
+      execute :sudo, '-u', tomcat_user, 'rm -rf', tomcat_war_dir
+    else
+      warn('Tomcat war directory does not exist.')
+    end
+  end  
+  
 end
